@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<suite name="Test Suite Selenium">  
+  <test name="Selenium Test">  
+    <classes>  
+      <class name="ui_qa.LoginTest"/>
+    </classes>  
+  </test> 
+</suite>

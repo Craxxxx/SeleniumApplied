@@ -1,0 +1,27 @@
+src/
+├── main/
+│   └── java/
+│       └── com/yourcompany/automation/
+│           ├── pages/         ← Page classes (one per screen)
+│           │   ├── LoginPage.java
+│           │   └── DashboardPage.java
+│           ├── components/    ← Reusable widgets (headers, footers)
+│           │   └── HeaderComponent.java
+│           └── utils/         ← Helpers (DriverManager, waits)
+│               └── DriverManager.java
+└── test/
+    └── java/
+        └── com/yourcompany/automation/tests/
+            ├── LoginTest.java ⟵ uses LoginPage
+
+1. pages/: Holds classes modeling each page’s UI and actions 
+2. components/: Contains smaller page fragments reused across pages (e.g., navigation bars)
+3. utils/ or drivers/: Manages WebDriver instances, waits, configuration (e.g., your DriverManager)
+4. tests/: TestNG or JUnit classes calling page methods without raw locators
+
+Chain of Workflow of this program
+1.SETUP CREATES THE WEBDRIVER
+2.LOGINTEST INITIATES THE LOGINPAGE WITH THAT Driver
+3.open() NAVIGATES TO THE LOGIN PAGE URL AND WAITS
+4.LoginAs() INPUTS CREDENTIALS, CLICKS LOGIN AND RETURNS AN INVENTORY PAGE
+5.InventoryPage constructor waits for a known element, then isLoaded() verifies the page.
