@@ -10,6 +10,8 @@ plugins {
     id 'application'
     //allure plugin 
     id 'io.qameta.allure' version '2.12.0'
+
+    id 'java'
 }
 
 repositories {
@@ -40,6 +42,17 @@ dependencies {
 
     implementation 'org.seleniumhq.selenium:selenium-java:4.31.0'
     implementation 'io.github.bonigarcia:webdrivermanager:6.1.0'
+
+
+    //cucumberCore & testNG adapter
+    testImplementation 'io.cucumber:cucumber-java:7.21.1'
+    testImplementation 'io.cucumber:cucumber-testng:7.21.1'
+
+    // Gherkin parser
+    testImplementation 'io.cucumber:gherkin:30.0.0'
+
+    //pico container
+    testImplementation 'io.cucumber:cucumber-picocontainer:7.21.1'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -54,9 +67,9 @@ application {
     mainClass = 'selenium.App'
 }
 
-tasks.test {
+task classicTest(type: Test) {
     useTestNG {
-        suites 'src/test/resources/testing.xml'
+        suites 'src/test/resources/testing.xml' //traditional testNG suites
         listeners = ['io.qameta.allure.testng.AllureTestNg']
     }
      testLogging {
@@ -65,3 +78,33 @@ tasks.test {
         showStandardStreams = true 
     }
 }
+
+task cucumberTest(type: Test) {
+    useTestNG {
+        // Point at your valid XML
+        suites 'src/test/resources/cucumber.xml'
+        listeners = ['io.qameta.allure.testng.AllureTestNg']
+    }
+     testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full" 
+        showStandardStreams = true 
+    }
+}
+
+tasks.named('test') {
+    dependsOn classicTest, cucumberTest
+}
+
+
+// tasks.test {
+//     useTestNG {
+//         //suites 'src/test/resources/testing.xml'
+//         listeners = ['io.qameta.allure.testng.AllureTestNg']
+//     }
+//      testLogging {
+//         events "passed", "skipped", "failed"
+//         exceptionFormat "full" 
+//         showStandardStreams = true 
+//     }
+// }

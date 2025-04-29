@@ -25,3 +25,8 @@ Chain of Workflow of this program
 3.open() NAVIGATES TO THE LOGIN PAGE URL AND WAITS
 4.LoginAs() INPUTS CREDENTIALS, CLICKS LOGIN AND RETURNS AN INVENTORY PAGE
 5.InventoryPage constructor waits for a known element, then isLoaded() verifies the page.
+
+
+Extras:
+1. CucumberHook is created because there's 2 test suites in this projects. and because of that the setup class @beforeSuites did not 
+   initiate for the second times causing the cucumber test to fail because of the unregistered drivers

@@ -70,7 +70,4 @@ public class LoginPage {
         return new InventoryPage(driver); // return the new inventory page object after login
     }
 
-
-
-
 }

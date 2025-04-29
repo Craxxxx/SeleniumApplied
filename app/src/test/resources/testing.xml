@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>  
-<suite name="Test Suite Selenium">  
+<suite name="Testing using selenium">  
   <test name="Selenium Test">  
     <classes>  
       <class name="ui_qa.LoginTest"/>
+      <!-- <class name="ui_qa.CucumberTest"/> -->
     </classes>  
   </test> 
 </suite>

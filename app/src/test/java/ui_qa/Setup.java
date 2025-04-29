@@ -27,7 +27,7 @@ public class Setup {
     @AfterSuite
     public void teardownTest()
     {
-        System.out.println("Tearing down env");
+        System.out.println("Tearing down resources and driver");
         DriverManager.quitAll();
     }
 }
