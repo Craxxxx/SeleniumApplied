@@ -3,6 +3,7 @@
   <test name="BDD Tests">
     <classes>
       <class name="ui_qa.CucumberTest"/>
+      <class name="ui_qa.negativeCucumberTest"/>
     </classes>
   </test>
 </suite>

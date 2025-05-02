@@ -4,8 +4,8 @@ import io.cucumber.testng.CucumberOptions;
 
 
 @CucumberOptions(
-        features = "src/test/resources/features",
-        glue = {"ui_qa.steps","ui_qa.hooks","ui_qa.context"},
+        features = "src/test/resources/features/Positives",
+        glue = {"ui_qa.steps.positive","ui_qa.hooks","ui_qa.context"},
         plugin = {"pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
 public class CucumberTest extends AbstractTestNGCucumberTests{

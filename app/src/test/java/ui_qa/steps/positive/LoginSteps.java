@@ -1,8 +1,7 @@
-package ui_qa.steps;
+package ui_qa.steps.positive;
 
 import io.cucumber.java.en.*;
 
-import java.sql.DriverManager;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 //import driverManager
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -22,9 +23,28 @@ public class DriverManager {
         //code below will check if the map already contain the driver with the name key passe in the function
         if(!drivers.containsKey(name)) //if it doesnt contain the driver with the name key
         {
+
+            //i have a case where a popup from Chrome’s built‑in password manager warning you that “secret_sauce” 
+            //was breached—and it’s blocking your test’s DOM interactions and causing the failure.
+
+            //below is the solution to prevent that from happening
+            //1)disable chrome password manager and save password prompts
+            Map<String,Object> prefs = new HashMap<>();
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+            
+
+
+            //2)create whatever this is
+            ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs" , prefs);
+
+            //3)run with guest mode
+            options.addArguments("--guest");
+        
             //create a new driver and put it in the map with the name key
             WebDriverManager.chromedriver().setup(); //this methods automatically downloads and configures the correct driver binary at runtime
-            WebDriver driver = new ChromeDriver();
+            WebDriver driver = new ChromeDriver(options);
             drivers.put(name, driver);
         } 
 
