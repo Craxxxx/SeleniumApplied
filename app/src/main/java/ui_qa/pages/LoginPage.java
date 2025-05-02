@@ -17,6 +17,7 @@ public class LoginPage {
     private By usernameBy = By.id("user-name"); //id of the username input field
     private By passwordBy = By.id("password");
     private By loginBtnBy = By.id("login-button");
+    private By errorBannerBy = By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3");
     //only the page itself knows how to find the elements on the page
 
     //login page CONSTRUCTOR
@@ -68,6 +69,21 @@ public class LoginPage {
 
         wait.until(ExpectedConditions.elementToBeClickable(loginBtnBy)).click();
         return new InventoryPage(driver); // return the new inventory page object after login
+    }
+
+    public String loginExpectingError(String user,String pass)
+    {
+        WebElement u = wait.until(ExpectedConditions.elementToBeClickable(usernameBy));
+        u.clear(); u.sendKeys(user);
+
+        WebElement p = wait.until(ExpectedConditions.elementToBeClickable(passwordBy));
+        p.clear(); p.sendKeys(pass);
+
+        wait.until(ExpectedConditions.elementToBeClickable(loginBtnBy)).click();
+
+        //wait for the error banner to appear
+        WebElement bannerError = wait.until(ExpectedConditions.visibilityOfElementLocated(errorBannerBy));
+        return bannerError.getText();
     }
 
 }

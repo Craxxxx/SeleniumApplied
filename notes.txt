@@ -1,18 +1,40 @@
 src/
 ├── main/
 │   └── java/
-│       └── com/yourcompany/automation/
-│           ├── pages/         ← Page classes (one per screen)
+│       └── ui_qa/
+│           ├── pages/
 │           │   ├── LoginPage.java
 │           │   └── DashboardPage.java
-│           ├── components/    ← Reusable widgets (headers, footers)
+│           ├── components/
 │           │   └── HeaderComponent.java
-│           └── utils/         ← Helpers (DriverManager, waits)
-│               └── DriverManager.java
+│           ├── utils/
+│           │   └── DriverManager.java
+│           └── context/
+│               └── TestContext.java
 └── test/
-    └── java/
-        └── com/yourcompany/automation/tests/
-            ├── LoginTest.java ⟵ uses LoginPage
+    ├── java/
+    │   └── ui_qa/
+    │       ├── Setup.java
+    │       ├── LoginTest.java
+    │       ├── CucumberTest.java
+    │       ├── hooks/
+    │       │   └── CucumberHook.java
+    │       └── steps/
+    │           ├── positive/
+    │           │   └── LoginPositiveSteps.java
+    │           ├── negative/
+    │           │   └── LoginNegativeSteps.java
+    │           └── boundary/
+    │               └── LoginBoundarySteps.java
+    └── resources/
+        └── features/
+            ├── positive/
+            │   └── login.feature
+            ├── negative/
+            │   └── login_errors.feature
+            └── boundary/
+                └── login_length.feature
+
 
 1. pages/: Holds classes modeling each page’s UI and actions 
 2. components/: Contains smaller page fragments reused across pages (e.g., navigation bars)

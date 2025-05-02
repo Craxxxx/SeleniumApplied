@@ -3,6 +3,7 @@
   <test name="Selenium Test">  
     <classes>  
       <class name="ui_qa.LoginTest"/>
+      <class name="ui_qa.steps.negative.LoginNegativeTest"/>
       <!-- <class name="ui_qa.CucumberTest"/> -->
     </classes>  
   </test> 

@@ -31,6 +31,16 @@ public class DriverManager {
         return drivers.get(name);//return the value which the drivers key name is pointing to it is the driver object
     }
 
+
+    /** Quits **specific** managed drivers and clears the registry. */
+    public static void quitAndRemove(String name)
+    {
+        WebDriver driver = drivers.remove(name);
+        if (driver != null) {
+            driver.quit();                              // then quit browser
+        }
+    }
+
     
     /** Quits **all** managed drivers and clears the registry. */
     public static void quitAll()
