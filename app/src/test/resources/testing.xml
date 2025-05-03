@@ -4,6 +4,7 @@
     <classes>  
       <class name="ui_qa.LoginTest"/>
       <class name="ui_qa.steps.negative.LoginNegativeTest"/>
+      <class name="ui_qa.steps.negative.CartNegativeTest"/>
     </classes>  
   </test> 
 </suite>
