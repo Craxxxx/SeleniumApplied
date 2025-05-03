@@ -6,6 +6,7 @@ import org.testng.Assert;
 import io.cucumber.java.en.*;
 import ui_qa.context.TestContext;
 import ui_qa.pages.CartPage;
+import ui_qa.pages.CheckoutPage;
 import ui_qa.pages.InventoryPage;
 import ui_qa.pages.LoginPage;
 
@@ -14,6 +15,7 @@ public class CartNegativeSteps{
     private LoginPage loginpage;// this is for navigating the pages
     private InventoryPage inventorypage;
     private CartPage cartpage;
+    private CheckoutPage checkout;
     private String errorMessage;
 
 
@@ -23,7 +25,7 @@ public class CartNegativeSteps{
         this.context = context; //retrieve the drive to start the operations
     }
 
-
+    //REUSE TWICE
     //initiate web driver to open the browser //open the login page and login 
     @Given("I am logged in as {string} with password {string}")
     public void openAndLogin(String user, String pass)
@@ -40,7 +42,9 @@ public class CartNegativeSteps{
     {
         cartpage = inventorypage.navToCart(); //navigate to cart //the cartpage contains Cartpage POM with its driver
     }
+    //REUSE TWICE
 
+    //EMPTY CART
     @And("my cart is empty")
     public void cartEmpty()
     {
@@ -59,5 +63,26 @@ public class CartNegativeSteps{
     public void verifyErrorMessage(String expected) {
         Assert.assertEquals(errorMessage, expected); //it is supposed to fail because the website cant handle the value
     }
+    //EMPTY CART
 
+    //MISSING CHECKOUT INFORMATION
+    @And("I have added an item to my cart")
+    public void addItemtoCart()
+    {
+        inventorypage.addItemCarts();
+    }
+
+    @When("I navigate to the checkout information page")
+    public void checkOutPage()
+    {
+        checkout = cartpage.navtoCheckout();
+    }
+
+    @And("I leave all required fields blank")
+    public void fillCheckoutInfo()
+    {
+        errorMessage = checkout.fillInfoExpectingError();
+    }
+
+    //MISSING CHECKOUT INFORMATION
 }

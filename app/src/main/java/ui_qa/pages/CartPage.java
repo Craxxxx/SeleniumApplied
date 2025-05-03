@@ -64,9 +64,12 @@ public class CartPage {
     }
 
     //performing supposed succesfull checkout
-    public void checkoutSuccess()
+    public CheckoutPage navtoCheckout()
     {
-
+        WebElement E = wait.until(ExpectedConditions.elementToBeClickable(checkoutBy));
+        E.click(); //click the button CHECKOUT BUTTON to move to checkout 
+        
+        return new CheckoutPage(driver);//return the driver to create the checkoutPage POM
     }
 
     //ACTION METHODS

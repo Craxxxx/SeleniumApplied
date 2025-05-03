@@ -16,6 +16,10 @@ public class InventoryPage {
     private By inventoryContainerBy = By.id("inventory_container");
     //locating the cartButton
     private By cartButtonBy = By.className("shopping_cart_link");
+    //locating addToCart button
+    private By addItemByBackpack = By.id("add-to-cart-sauce-labs-backpack");
+    private By addItemByBikelight = By.id("add-to-cart-sauce-labs-bike-light");
+    private By addItemByTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
 
     //constructor
     public InventoryPage(WebDriver driver) {
@@ -41,6 +45,18 @@ public class InventoryPage {
 
         return new CartPage(driver); //this is used for chaining commands and navigate the cart page
         //return new CartPage object
+    }
+
+    //2)adding item to carts
+    public void addItemCarts()
+    {
+        WebElement item1 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBackpack));
+        WebElement item2 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBikelight));
+        WebElement item3 = wait.until(ExpectedConditions.elementToBeClickable(addItemByTshirt));
+
+        item1.click();
+        item2.click();
+        item3.click();
     }
     //ACTION METHODS
 }
