@@ -35,6 +35,26 @@ public class LoginNegativeTest extends Setup{
 
     }
 
+    @Test(description = "missing username on the username filed in the login page")
+    public void testEmptyUser()
+    {
+        //1. open the login screen using function below will automatically clear the previous session
+        String errormesage = loginPage.open().
+        //2.enter the username and password
+        loginExpectingError("", "secret_sauce");
+        //3. assert the error message
+        Assert.assertEquals(errormesage, "Epic sadface: Username is required");
+    }
+
+    @Test(description = "Missing password on the password field in the login page")
+    public void testEmptyPasword()
+    {
+        String errormessage = loginPage.open().
+        loginExpectingError("standard_user", "");
+
+        Assert.assertEquals(errormessage,"Epic sadface: Password is required");
+    }
+
 }
 
 
