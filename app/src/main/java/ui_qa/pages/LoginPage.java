@@ -71,6 +71,7 @@ public class LoginPage {
         return new InventoryPage(driver); // return the new inventory page object after login
     }
 
+    
     public String loginExpectingError(String user,String pass)
     {
         WebElement u = wait.until(ExpectedConditions.elementToBeClickable(usernameBy));
