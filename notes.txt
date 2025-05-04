@@ -5,6 +5,8 @@ src/
 │           ├── pages/
 │           │   ├── LoginPage.java
 │           │   └── DashboardPage.java
+│           │   └── CartPage.java
+│           │   └── CheckoutPage.java
 │           ├── components/
 │           │   └── HeaderComponent.java
 │           ├── utils/
@@ -15,25 +17,31 @@ src/
     ├── java/
     │   └── ui_qa/
     │       ├── Setup.java
-    │       ├── LoginTest.java
     │       ├── CucumberTest.java
+    │       ├── negativeCucumberTest.java    
     │       ├── hooks/
     │       │   └── CucumberHook.java
     │       └── steps/
     │           ├── positive/
-    │           │   └── LoginPositiveSteps.java
+    │           │   └── LoginTest.java
     │           ├── negative/
+    │           │   └── CartNegativeSteps.java
+    │           │   └── CartNegativeTest.java
     │           │   └── LoginNegativeSteps.java
+    │           │   └── LoginNegativeTest.java            
     │           └── boundary/
     │               └── LoginBoundarySteps.java
     └── resources/
-        └── features/
-            ├── positive/
-            │   └── login.feature
-            ├── negative/
-            │   └── login_errors.feature
-            └── boundary/
-                └── login_length.feature
+        ├── features/
+        │   ├── positive/
+        │   │   └── login.feature
+        │   ├── negative/
+        │   │   └── cart_errors.feature
+        │   │   └── login_errors.feature
+        │   └── boundary/
+        │        └── login_length.feature
+        ├──cucumber.xml
+        ├──testing.xml
 
 
 1. pages/: Holds classes modeling each page’s UI and actions 
@@ -52,3 +60,49 @@ Chain of Workflow of this program
 Extras:
 1. CucumberHook is created because there's 2 test suites in this projects. and because of that the setup class @beforeSuites did not 
    initiate for the second times causing the cucumber test to fail because of the unregistered drivers
+
+proposed final schema:
+src/
+└── main/java/ui_qa/
+    ├── pages/
+    │   ├── LoginPage.java
+    │   ├── CartPage.java
+    │   ├── CheckoutPage.java
+    │   └── DashboardPage.java
+    ├── components/
+    │   └── HeaderComponent.java
+    ├── utils/
+    │   └── DriverManager.java
+    └── context/
+        └── TestContext.java
+
+src/
+└── test/
+    ├── java/ui_qa/
+    │   ├── Setup.java
+    │   ├── runners/
+    │   │   ├── PositiveCucumberRunner.java
+    │   │   ├── NegativeCucumberRunner.java
+    │   │   └── BoundaryCucumberRunner.java
+    │   ├── steps/
+    │   │   ├── positive/
+    │   │   │   └── LoginPositiveSteps.java
+    │   │   ├── negative/
+    │   │   │   ├── LoginNegativeSteps.java
+    │   │   │   └── CartNegativeSteps.java
+    │   │   └── boundary/
+    │   │       └── LoginBoundarySteps.java
+    │   └── hooks/
+    │       └── CucumberHook.java
+    └── resources/
+        ├── features/
+        │   ├── positive/
+        │   │   └── login.feature
+        │   ├── negative/
+        │   │   ├── login-errors.feature
+        │   │   └── cart-errors.feature
+        │   └── boundary/
+        │       └── login-length.feature
+        ├── cucumber-positive.xml
+        ├── cucumber-negative.xml
+        └── cucumber-boundary.xml

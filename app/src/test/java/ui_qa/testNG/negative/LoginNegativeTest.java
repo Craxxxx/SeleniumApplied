@@ -1,4 +1,4 @@
-package ui_qa.steps.negative;
+package ui_qa.testNG.negative;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

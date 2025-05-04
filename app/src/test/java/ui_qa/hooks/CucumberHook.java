@@ -3,7 +3,6 @@ package ui_qa.hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import ui_qa.utils.DriverManager;
-import org.openqa.selenium.WebDriver;
 //import io.cucumber.picocontainer.PicoFactory;  no need to use this because you already added it the build.gradle
 
 //import the context

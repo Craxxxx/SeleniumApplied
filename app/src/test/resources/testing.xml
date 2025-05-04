@@ -2,9 +2,9 @@
 <suite name="Testing using selenium">  
   <test name="Selenium Test">  
     <classes>  
-      <class name="ui_qa.LoginTest"/>
-      <class name="ui_qa.steps.negative.LoginNegativeTest"/>
-      <class name="ui_qa.steps.negative.CartNegativeTest"/>
+      <class name="ui_qa.testNG.positive.LoginTest"/>
+      <class name="ui_qa.testNG.negative.LoginNegativeTest"/>
+      <class name="ui_qa.testNG.negative.CartNegativeTest"/>
     </classes>  
   </test> 
 </suite>

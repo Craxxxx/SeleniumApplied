@@ -2,8 +2,8 @@
 <suite name="CucumberOnly">
   <test name="BDD Tests">
     <classes>
-      <class name="ui_qa.CucumberTest"/>
-      <class name="ui_qa.negativeCucumberTest"/>
+      <class name="ui_qa.runners.CucumberTest"/>
+      <class name="ui_qa.runners.negativeCucumberTest"/>
     </classes>
   </test>
 </suite>

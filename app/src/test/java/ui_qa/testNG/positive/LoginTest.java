@@ -1,9 +1,10 @@
-package ui_qa;
+package ui_qa.testNG.positive;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import ui_qa.Setup;
 import ui_qa.pages.InventoryPage;
 import ui_qa.pages.LoginPage;
 
