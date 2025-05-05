@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InventoryPage {
     private final WebDriver driver;
@@ -20,6 +22,11 @@ public class InventoryPage {
     private By addItemByBackpack = By.id("add-to-cart-sauce-labs-backpack");
     private By addItemByBikelight = By.id("add-to-cart-sauce-labs-bike-light");
     private By addItemByTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
+    //individual item locator
+
+    
+    //item locator using dynamic map
+    private final Map<String,By> itemLocator = new HashMap<>();
 
     //constructor
     public InventoryPage(WebDriver driver) {
@@ -27,12 +34,19 @@ public class InventoryPage {
         this.wait   = new WebDriverWait(driver, Duration.ofSeconds(10));
         // wait for key element on inventory page
         wait.until(ExpectedConditions.visibilityOfElementLocated(inventoryContainerBy));
+
+        //since i cant put the item id in the gherkin format this will do
+        itemLocator.put("Sauce Labs Backpack", By.id("item_4_title_link"));
+        itemLocator.put("Sauce Labs Bike Light", By.id("item_0_title_link"));
+        itemLocator.put("Sauce Labs Bolt T-Shirt", By.id("item_1_title_link"));
+        itemLocator.put("Sauce Labs Fleece Jacket", By.id("item_5_title_link"));
     }
 
     // A simple check method
     public boolean isLoaded() {
         return driver.findElement(inventoryContainerBy).isDisplayed();
     }
+
 
     //ACTION METHODS
 
@@ -58,5 +72,21 @@ public class InventoryPage {
         item2.click();
         item3.click();
     }
+
+    public DetailPage navToItemdetails(String item)
+    {
+        By currentItem = null; //first initiation
+        //check if the item and By couple is already created inside the map
+        if(itemLocator.containsKey(item)) //if the key value is found with its related value
+        {
+            currentItem = itemLocator.get(item); //get the by value from the key value
+        }
+        WebElement itemLink = wait.until(ExpectedConditions.elementToBeClickable(currentItem));//wait for the link to be clickable
+
+        itemLink.click();
+        return new DetailPage(driver);
+    }
+
+ 
     //ACTION METHODS
 }
