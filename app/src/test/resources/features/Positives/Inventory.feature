@@ -1,7 +1,9 @@
 Feature: accessing Inventory Page
 
-Scenario Outline: View product details for multiple times
+Background:
     Given I log in as "standard_user" with password "secret_sauce"
+
+Scenario Outline: View product details for multiple times
     When I click the "<itemName>" item link
     Then I should see the "<itemName>" in the product title detail page
 
@@ -13,6 +15,10 @@ Examples:
     | Sauce Labs Fleece Jacket|
 
 Scenario: View all Products
-    Given I log in as "standard_user" with password "secret_sauce"
-    When 
-    Then
+    When I am on the inventory page
+    Then I should see exactly 6 products displayed
+    And each product should show:
+      | Field       |
+      | name        | 
+      | price       |
+      | image       |

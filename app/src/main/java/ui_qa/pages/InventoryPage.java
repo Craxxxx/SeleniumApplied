@@ -7,8 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+
+//import helper
+import ui_qa.helper.ProductSummary;
 
 public class InventoryPage {
     private final WebDriver driver;
@@ -23,6 +28,12 @@ public class InventoryPage {
     private By addItemByBikelight = By.id("add-to-cart-sauce-labs-bike-light");
     private By addItemByTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
     //individual item locator
+
+    //item detail locator
+    private By inventoryItems = By.className("inventory_item");
+    private By itemName = By.className("inventory_item_name");
+    private By itemPrice = By.className("inventory_item_price");
+    private By itemImg = By.className("inventory_item_img");
 
     
     //item locator using dynamic map
@@ -46,7 +57,6 @@ public class InventoryPage {
     public boolean isLoaded() {
         return driver.findElement(inventoryContainerBy).isDisplayed();
     }
-
 
     //ACTION METHODS
 
@@ -73,6 +83,7 @@ public class InventoryPage {
         item3.click();
     }
 
+    //navToItemDetails
     public DetailPage navToItemdetails(String item)
     {
         By currentItem = null; //first initiation
@@ -87,6 +98,31 @@ public class InventoryPage {
         return new DetailPage(driver);
     }
 
- 
+  
+
+    public List<Object> verifyInventoryItem()
+    {
+            //create array list to contain all the inventory_item class
+            List<WebElement> e = new ArrayList<>();
+
+            //create array list to contain all attributes inside the parent class
+            List<Object> allproduct = new ArrayList<>();
+
+            e = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(inventoryItems)); //containts all the WebElements
+            for(WebElement Item : e)
+            {
+                //foreach item in the list
+                String name = Item.findElement(itemName).getText(); //get name
+                String price = Item.findElement(itemPrice).getText(); //get name
+                WebElement img = Item.findElement(itemImg); //get name
+
+                //make an object to contain all this
+                allproduct.add(new ProductSummary(name, price, img)); // and store it inside a list
+            }
+            
+            return allproduct;
+    } 
+
+
     //ACTION METHODS
 }

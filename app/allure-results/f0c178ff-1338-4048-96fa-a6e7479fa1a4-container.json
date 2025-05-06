@@ -1,0 +1,1 @@
+{"uuid":"f0c178ff-1338-4048-96fa-a6e7479fa1a4","name":"ui_qa.testNG.positive.LoginTest","children":["70572944-dfca-43da-9cb2-05d857dbc387"],"befores":[{"name":"init","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1746520687477,"stop":1746520687485}],"afters":[],"start":1746520687429,"stop":1746520689351}
