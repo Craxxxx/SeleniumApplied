@@ -50,6 +50,22 @@ public class CheckoutPage {
         WebElement bannerError = wait.until(ExpectedConditions.visibilityOfElementLocated(errorBanner));
         return bannerError.getText();
     }
+
+    public void fillInfo()
+    {
+        WebElement f = wait.until(ExpectedConditions.elementToBeClickable(inputFirstN));
+        f.clear();f.sendKeys("Raditya Suardi");
+        WebElement l = wait.until(ExpectedConditions.elementToBeClickable(inputLastN));
+        l.clear();l.sendKeys("Tanjung");
+        WebElement z = wait.until(ExpectedConditions.elementToBeClickable(inputZipCde));
+        z.clear();z.sendKeys("17432"); 
+    }
+
+    public OrderSummaryPage navToOrderSummary()
+    {
+        wait.until(ExpectedConditions.elementToBeClickable(ContButton)).click(); //click the continue button
+        return new OrderSummaryPage(driver);
+    }
     //actions
 
 }
