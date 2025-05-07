@@ -27,6 +27,7 @@ public class InventoryPage {
     private By addItemByBackpack = By.id("add-to-cart-sauce-labs-backpack");
     private By addItemByBikelight = By.id("add-to-cart-sauce-labs-bike-light");
     private By addItemByTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
+    private By CartBadge = By.className("shopping_cart_badge");
     //individual item locator
 
     //item detail locator
@@ -71,7 +72,44 @@ public class InventoryPage {
         //return new CartPage object
     }
 
-    //2)adding item to carts
+    public void addItem2()
+    {
+        WebElement item1 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBackpack));
+        WebElement item2 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBikelight));
+
+        item1.click();
+        item2.click();
+    }
+
+    //adding a single item to the cart
+    public String addSingleCart()
+    {
+        WebElement singleItem = wait.until(ExpectedConditions.elementToBeClickable(addItemByBackpack));//add backpack
+        singleItem.click();
+
+        //indicator that it succeded
+        WebElement Badge = wait.until(ExpectedConditions.visibilityOfElementLocated(CartBadge));//check if the badge has appears
+        String badgeValue = Badge.getText();
+
+        return badgeValue;
+    }
+
+    public String addMultipleCart()
+    {
+        WebElement item1 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBackpack));
+        item1.click();
+        WebElement item2 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBikelight));
+        item2.click();
+        WebElement item3 = wait.until(ExpectedConditions.elementToBeClickable(addItemByTshirt));
+        item3.click();
+
+        WebElement Badge = wait.until(ExpectedConditions.visibilityOfElementLocated(CartBadge));//check if the badge has appears
+        String badgeValue = Badge.getText();
+
+        return badgeValue;
+    }
+
+    //adding multiple item to carts
     public void addItemCarts()
     {
         WebElement item1 = wait.until(ExpectedConditions.elementToBeClickable(addItemByBackpack));
@@ -122,7 +160,5 @@ public class InventoryPage {
             
             return allproduct;
     } 
-
-
     //ACTION METHODS
 }

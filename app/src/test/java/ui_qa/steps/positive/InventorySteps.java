@@ -1,6 +1,6 @@
 package ui_qa.steps.positive;
 
-import io.cucumber.datatable.DataTable;
+
 import io.cucumber.java.en.*;
 
 
@@ -25,8 +25,7 @@ public class InventorySteps {
     private InventoryPage inventoryPage;
     private DetailPage detailPage;
     private ProductSummary productSummary;
-
-    List<Object> Products = new ArrayList<>();
+    private List<Object> Products = new ArrayList<>();
 
     //inject the testcontext here pico continer
     public InventorySteps(TestContext context){
@@ -107,7 +106,7 @@ public class InventorySteps {
         for(Object product : Products)
         {
             ProductSummary summary = (ProductSummary) product; //typecast it back to its original class
-            
+
             for(String field : datatable)
             {
                 switch (field) {

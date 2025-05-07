@@ -3,10 +3,13 @@ package ui_qa.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartPage {
     //create the driverContainer
@@ -21,6 +24,14 @@ public class CartPage {
 
     //Locator for the error message
     private By errorBannerBy   = By.cssSelector(".error-message-container");
+
+    //locator for item
+    private By ItemNameBy = By.className("inventory_item_name"); //find the 
+
+    //locator for the remove button
+    private By removeBtnBy = By.id("remove-sauce-labs-backpack"); //remove button for the backpack item
+
+    private By CartBadge = By.className("shopping_cart_badge");
 
 
     //CONSTRUCTOR FOR THIS CLASS
@@ -41,9 +52,36 @@ public class CartPage {
         
         //SOLUTION
         //USE findElements which always returns a possibly empty. i can simply check isEmpty(); because it is a list just checkif the list is empty
-        return driver.findElements(cartItemBy).isEmpty(); //returns true if the cart is really empty
-        
+        return driver.findElements(cartItemBy).isEmpty(); //returns true if the cart is really empty 
     }
+
+    public String removeItem()
+    {
+        //remove an item from the cart
+        WebElement removeBtn = wait.until(ExpectedConditions.elementToBeClickable(removeBtnBy));    
+        removeBtn.click(); //remove item from the cart
+
+        //locate the badge number
+        WebElement badge = wait.until(ExpectedConditions.visibilityOfElementLocated(CartBadge));
+        String badgevalue = badge.getText();
+
+        return badgevalue;
+    }
+
+    public String checkSingleValue()
+    {
+        WebElement x = wait.until(ExpectedConditions.visibilityOfElementLocated(ItemNameBy));
+        String itemName = x.getText();
+
+        return itemName;
+    }
+
+    public List<WebElement> checkMultipleValue()
+    {
+        // List<WebElement> x = new ArrayList<>();
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(ItemNameBy));
+    }
+
 
     //performing supposed failed checkout
     public String checkoutExpectingError()
