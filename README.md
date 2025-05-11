@@ -1,4 +1,4 @@
-UI Web Testing Framework with Cucumber, Java, Gradle, and Selenium
+End to End Testing Framework with Cucumber, Java, Gradle, and Selenium
 
 ## Overview
 
