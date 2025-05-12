@@ -2,7 +2,7 @@ End to End Testing Framework with Cucumber, Java, Gradle, and Selenium
 
 ## Overview
 
-This repository contains an automated UI testing framework for web applications, built using **Cucumber**, **Java**, **Gradle**, and **Selenium WebDriver**. 
+This repository contains an automated UI end to end testing framework for web applications, built using **Cucumber**, **Java**, **Gradle**, and **Selenium WebDriver**. 
 The framework implements the **Page Object Model (POM)** design pattern for maintainable and scalable test automation. Test cases are written in **Gherkin** 
 syntax for readability and collaboration between technical and non-technical stakeholders.
 
